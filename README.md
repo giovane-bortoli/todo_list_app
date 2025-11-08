@@ -44,6 +44,8 @@ Aplicação completa de lista de tarefas (TodoList) que demonstra boas práticas
 - **GetIt** - dependency injection
 - **ScreenUtil** - responsividade
 - **Command Pattern** - gerenciamento de estado
+- **Mockito** - mocks para testes unitários
+- **Build Runner** - geração de código
 
 ## 📦 Estrutura do Projeto
 
@@ -62,6 +64,12 @@ lib/
 │       └── presentation/# Controllers, Screens, Widgets
 └── shared/
     └── theme/           # Tema da aplicação
+
+test/
+└── features/
+    └── todoList/
+        ├── data/        # Testes de DataSource e Repository
+        └── domain/      # Testes de UseCases
 ```
 
 ## 🎨 Design Patterns Utilizados
@@ -81,16 +89,44 @@ lib/
 - **I**nterface Segregation: interfaces específicas
 - **D**ependency Inversion: dependências de abstrações
 
-## 📱 Screenshots
+## 🧪 Testes
 
-[Em desenvolvimento]
+O projeto possui cobertura completa de testes unitários nas camadas Domain e Data.
 
-## 🔜 Próximas Melhorias
+### Executar Testes
 
-- [ ] Adicionar testes unitários
-- [ ] Implementar testes de widget
-- [ ] Adicionar categorias/tags às tarefas
-- [ ] Implementar busca de tarefas
-- [ ] Adicionar datas de criação/conclusão
-- [ ] Migrar para Hive ou SQLite
-- [ ] Sincronização com backend
+```bash
+# Executar todos os testes
+flutter test
+
+# Executar testes com cobertura
+flutter test --coverage
+
+# Executar testes de um arquivo específico
+flutter test test/features/todoList/domain/usecases/todo_list_add_item_test.dart
+```
+
+### Cobertura de Testes
+
+**Domain Layer (20 testes):**
+
+- ✅ TodoListAddItem - 4 testes
+- ✅ TodoListGetAll - 3 testes
+- ✅ TodoListToggleComplete - 4 testes
+- ✅ TodoListRemoveItem - 4 testes
+- ✅ TodoListFilterItem - 5 testes
+
+**Data Layer (22 testes):**
+
+- ✅ TodoListLocalDataSourceImpl - 13 testes
+- ✅ TodoListRepositoryImpl - 9 testes
+
+**Total: 42 testes unitários**
+
+### Estratégia de Testes
+
+- **AAA Pattern**: Arrange-Act-Assert para estruturação de testes
+- **Mocks com Mockito**: isolamento de dependências
+- **Test Fixtures**: dados de teste reutilizáveis
+- **Testes de Sucesso e Falha**: cobertura completa de cenários
+- **Validações**: testes de regras de negócio e edge cases
