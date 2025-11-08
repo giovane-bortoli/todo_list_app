@@ -20,16 +20,19 @@ Aplicação completa de lista de tarefas (TodoList) que demonstra boas práticas
 **Clean Architecture** com três camadas principais:
 
 ### Domain Layer (Núcleo de Negócio)
+
 - Entities: modelos de negócio puros
 - UseCases: operações de negócio isoladas
 - Repository Interfaces: contratos abstratos
 
 ### Data Layer (Implementação)
+
 - Models: extensões das entities com serialização
 - DataSources: fonte de dados (local com SharedPreferences)
 - Repository Implementation: conversão entre camadas
 
 ### Presentation Layer (Interface)
+
 - Controllers: gerenciamento de estado com Command Pattern
 - Screens: telas da aplicação
 - Widgets: componentes reutilizáveis
@@ -59,22 +62,6 @@ lib/
 │       └── presentation/# Controllers, Screens, Widgets
 └── shared/
     └── theme/           # Tema da aplicação
-```
-
-## 🚀 Como Executar
-
-```bash
-# Clone o repositório
-git clone <url-do-repositório>
-
-# Entre no diretório
-cd todo_list_app
-
-# Instale as dependências
-flutter pub get
-
-# Execute o app
-flutter run
 ```
 
 ## 🎨 Design Patterns Utilizados
@@ -107,15 +94,3 @@ flutter run
 - [ ] Adicionar datas de criação/conclusão
 - [ ] Migrar para Hive ou SQLite
 - [ ] Sincronização com backend
-
-## 📄 Licença
-
-Este projeto está sob licença MIT.
-
-## 👨‍💻 Autor
-
-[Seu Nome]
-
----
-
-**Desenvolvido com Flutter e ❤️**
