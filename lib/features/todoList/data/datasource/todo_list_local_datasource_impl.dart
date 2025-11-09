@@ -3,9 +3,6 @@ import 'package:todo_list_app/core/utils/cache_manager.dart';
 import 'package:todo_list_app/features/todoList/data/datasource/todo_list_local_datasource.dart';
 import 'package:todo_list_app/features/todoList/data/models/todo_list_model.dart';
 
-/// Implementação concreta do DataSource usando SharedPreferences
-/// Responsável por toda lógica de persistência local de tarefas
-/// Usa CacheManager para encapsular operações de cache
 class TodoListLocalDataSourceImpl implements TodoListLocalDataSource {
   final CacheManager cacheManager;
 

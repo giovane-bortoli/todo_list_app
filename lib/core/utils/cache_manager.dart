@@ -3,15 +3,11 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_list_app/core/errors/exceptions.dart';
 
-/// Gerenciador de cache customizado que encapsula operações do SharedPreferences
-/// Fornece métodos type-safe e tratamento de erros consistente
-/// Reduz duplicação de código nas implementações de DataSource
 class CacheManager {
   final SharedPreferences _preferences;
 
   CacheManager(this._preferences);
 
-  /// Salva uma string no cache
   Future<void> saveString(String key, String value) async {
     try {
       final success = await _preferences.setString(key, value);
@@ -24,7 +20,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera uma string do cache
   String? getString(String key) {
     try {
       return _preferences.getString(key);
@@ -33,7 +28,6 @@ class CacheManager {
     }
   }
 
-  /// Salva um objeto (converte para JSON automaticamente)
   Future<void> saveObject<T>(String key, T object, Map<String, dynamic> Function(T) toMap) async {
     try {
       final map = toMap(object);
@@ -45,7 +39,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera um objeto (converte de JSON automaticamente)
   T? getObject<T>(String key, T Function(Map<String, dynamic>) fromMap) {
     try {
       final jsonString = getString(key);
@@ -60,7 +53,6 @@ class CacheManager {
     }
   }
 
-  /// Salva uma lista de objetos (converte para JSON automaticamente)
   Future<void> saveList<T>(String key, List<T> list, Map<String, dynamic> Function(T) toMap) async {
     try {
       final listOfMaps = list.map((item) => toMap(item)).toList();
@@ -72,7 +64,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera uma lista de objetos (converte de JSON automaticamente)
   List<T> getList<T>(String key, T Function(Map<String, dynamic>) fromMap) {
     try {
       final jsonString = getString(key);
@@ -87,7 +78,6 @@ class CacheManager {
     }
   }
 
-  /// Remove um item do cache
   Future<void> remove(String key) async {
     try {
       final success = await _preferences.remove(key);
@@ -100,7 +90,6 @@ class CacheManager {
     }
   }
 
-  /// Limpa todo o cache
   Future<void> clear() async {
     try {
       final success = await _preferences.clear();
@@ -113,7 +102,6 @@ class CacheManager {
     }
   }
 
-  /// Verifica se existe uma chave no cache
   bool containsKey(String key) {
     try {
       return _preferences.containsKey(key);
@@ -122,7 +110,6 @@ class CacheManager {
     }
   }
 
-  /// Salva um valor booleano
   Future<void> saveBool(String key, bool value) async {
     try {
       final success = await _preferences.setBool(key, value);
@@ -135,7 +122,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera um valor booleano
   bool? getBool(String key) {
     try {
       return _preferences.getBool(key);
@@ -144,7 +130,6 @@ class CacheManager {
     }
   }
 
-  /// Salva um valor inteiro
   Future<void> saveInt(String key, int value) async {
     try {
       final success = await _preferences.setInt(key, value);
@@ -157,7 +142,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera um valor inteiro
   int? getInt(String key) {
     try {
       return _preferences.getInt(key);
@@ -166,7 +150,6 @@ class CacheManager {
     }
   }
 
-  /// Salva um valor double
   Future<void> saveDouble(String key, double value) async {
     try {
       final success = await _preferences.setDouble(key, value);
@@ -179,7 +162,6 @@ class CacheManager {
     }
   }
 
-  /// Recupera um valor double
   double? getDouble(String key) {
     try {
       return _preferences.getDouble(key);
