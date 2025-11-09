@@ -3,23 +3,16 @@ import 'package:todo_list_app/core/routes/app_routes.dart';
 import 'package:todo_list_app/core/routes/route_module.dart';
 import 'package:todo_list_app/features/todoList/presentation/screens/todo_list_screen.dart';
 
-/// Módulo de rotas da feature Todo
-/// Define todas as rotas relacionadas à funcionalidade de tarefas
 class TodoRouteModule implements RouteModule {
   @override
   Map<String, WidgetBuilder> getRoutes() {
-    return {
-      // Lista de tarefas
-      AppRoutes.home: (context) => const TodoListScreen(),
-    };
+    return {AppRoutes.home: (context) => const TodoListScreen()};
   }
 
   @override
   Route<dynamic>? generateRoute(RouteSettings settings) {
-    // Rotas dinâmicas com parâmetros
     final uri = Uri.parse(settings.name ?? '');
 
-    // Rota: /todo/edit/:id
     if (uri.pathSegments.length == 3 && uri.pathSegments[0] == 'todo' && uri.pathSegments[1] == 'edit') {
       final taskId = uri.pathSegments[2];
       return MaterialPageRoute(
@@ -29,7 +22,6 @@ class TodoRouteModule implements RouteModule {
       );
     }
 
-    // Rota: /todo/details/:id
     if (uri.pathSegments.length == 3 && uri.pathSegments[0] == 'todo' && uri.pathSegments[1] == 'details') {
       final taskId = uri.pathSegments[2];
       return MaterialPageRoute(
@@ -45,7 +37,6 @@ class TodoRouteModule implements RouteModule {
     return null;
   }
 
-  /// Widget placeholder até ter mais páginas
   Widget _placeholderPage(BuildContext context, String title, String description) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
