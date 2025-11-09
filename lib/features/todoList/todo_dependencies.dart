@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:todo_list_app/core/di/dependency_module.dart';
 import 'package:todo_list_app/core/utils/cache_manager.dart';
 import 'package:todo_list_app/features/todoList/data/datasource/todo_list_local_datasource.dart';
@@ -16,9 +16,6 @@ import 'package:todo_list_app/features/todoList/presentation/controller/todo_lis
 class TodoDependenciesModule implements DependencyModule {
   @override
   Future<void> registerDependencies(GetIt sl) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
-
     sl.registerLazySingleton<CacheManager>(() => CacheManager(sl()));
 
     sl.registerLazySingleton<TodoListLocalDataSource>(() => TodoListLocalDataSourceImpl(cacheManager: sl()));
